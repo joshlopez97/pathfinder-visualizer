@@ -1,0 +1,146 @@
+.graph-holder
+{
+  margin-top: 50px;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 50px);
+  overflow: hidden;
+}
+.line-holder {
+  position: absolute;
+  transform-origin: left;
+  height: 8px;
+  margin: -4px 0;
+}
+.line-holder:hover div.label {
+  opacity: 100;
+  z-index: 100;
+}
+.line-holder:hover {
+  z-index: 1;
+}
+.graph-holder .line-holder > div {
+  background: #ff00f2;
+  height: 1px;
+}
+.line-holder:hover div {
+  background: white;
+}
+#exploration-holder .line-holder > div.line {
+  background: #305cc2;
+  height: 2px;
+}
+#solution-holder .line-holder > div.line {
+  background: #2dc75b;
+  box-shadow: 0 0 5px #3cff75;
+  height: 3px;
+}
+#graph-holder .node {
+  display: none;
+}
+#exploration-holder .node {
+  background: #305cc2;
+}
+#solution-holder .node-holder {
+  z-index: 200;
+}
+#solution-holder .node {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  top: 6px;
+  transform: translate(-6px, -8px);
+  z-index: 200;
+}
+#solution-holder .node.right {
+  right: -12px;
+}
+div.label-holder {
+  position: absolute;
+  width: 100%;
+  height: unset !important;
+  z-index: 300;
+}
+.label {
+  position: absolute;
+  display: inline-block;
+  color: white;
+  font-size: 9pt;
+  background: #111 !important;
+  padding: 1px 5px;
+  border: 1px solid #aaa;
+  z-index: 100;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 4px;
+  border-radius: 3px;
+  opacity: 0;
+}
+.label.start, .label.end {
+  margin-top: 10px;
+  opacity: 0;
+  animation: fadein 0.5s linear forwards;
+}
+.caret-holder {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -5px;
+}
+.caret-holder > path {
+  stroke: #aaa;
+  fill: #111;
+}
+
+.line
+{
+  position: absolute;
+  top: 4px;
+}
+.node-holder {
+  height: unset !important;
+  background: none !important;
+  z-index: 100;
+}
+.node
+{
+  position: absolute;
+  height: 4px;
+  width: 4px;
+  border-radius: 2px;
+  background: white;
+  transform: translate(-2px, -2px);
+  box-shadow: none !important;
+  top: 4px;
+  opacity: 0;
+}
+.node.right {
+  right: -4px;
+}
+.node.start {
+  display: block !important;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  transform: translate(-6px, -6px);
+  background: lightgreen !important;
+  box-shadow: 0 0 15px #fff !important;
+}
+.node.end {
+  display: block !important;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  transform: translate(-6px, -6px);
+  background: lightcoral !important;
+  box-shadow: 0 0 15px #fff !important;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
+}
