@@ -21,9 +21,9 @@ export default class GraphSolver extends GraphBuilder {
   }
 
   applyHeuristic(heuristicFunction) {
-    for (let node in this.random_graph.nodes) {
+    this.random_graph.nodes.forEach(node => {
       node.heuristic = heuristicFunction(this.random_graph);
       console.log(node.heuristic);
-    }
+    });
   }
 }

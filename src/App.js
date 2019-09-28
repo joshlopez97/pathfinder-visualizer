@@ -18,7 +18,7 @@ export default class App extends Component {
 
   setAlgorithm = function(algorithm) {
     this.setState(state => (Object.assign(state, {
-      algorithm: algorithm
+      algorithm: algorithm.name
     })));
   }.bind(this);
 

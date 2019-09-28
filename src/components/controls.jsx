@@ -5,7 +5,7 @@ class Controls extends Component {
   render() {
     return (
       <div className="controls">
-        <AlgorithmChooser algorithms={["Dijkstra's", "A* Search"]}/>
+        <AlgorithmChooser setAlgorithm={this.props.setAlgorithm} algorithms={conf.algorithms}/>
       </div>
     );
   }
@@ -14,7 +14,7 @@ class Controls extends Component {
 class AlgorithmChooser extends Component {
   constructor(props) {
     super(props);
-    this.state = {choice: props.algorithms[0], active: false}
+    this.state = {choice: conf.startingAlgorithm, active: false}
   }
 
   showOptions() {
@@ -28,21 +28,21 @@ class AlgorithmChooser extends Component {
       active: false,
       choice: algorithm
     });
-    this.props.setAlgorithm(conf.algorithmLabels[algorithm]);
+    this.props.setAlgorithm(algorithm);
   }
 
   render() {
     return (
       <div className="algorithm-dropdown">
         <div onClick={() => this.showOptions()} className="algorithm-chooser button">
-          <span>{this.state.choice}</span>
+          <span>{this.state.choice.label}</span>
           <div className="dropdown-caret-holder">
             <span className={`dropdown-caret${!this.state.active? "" : " flipped"}`}>&#9660;</span>
           </div>
         </div>
         <div className={`algorithm-options${this.state.active? "" : " hidden"}`}>
-          {this.props.algorithms.map((algorithm, index) => {
-            return <div onClick={() => this.choose(algorithm)} className="algorithm-option button" key={index}>{algorithm}</div>;
+          {Object.values(this.props.algorithms).map((algorithm, index) => {
+            return <div onClick={() => this.choose(algorithm)} className="algorithm-option button" key={index}>{algorithm.label}</div>;
           })}
         </div>
       </div>

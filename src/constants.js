@@ -10,9 +10,19 @@ const config = {
     "Dijkstra's": "dijkstra",
     "A* Search": "astar"
   },
+  algorithms: {
+    dijkstra: {
+      label: "Dijkstra's",
+      name: "dijkstra"
+    },
+    astar: {
+      label: "A* Search",
+      name: "astar"
+    }
+  },
   startingAlgorithm: {
-    name: "dijkstra",
-    label: "Dijkstra's"
+    label: "Dijkstra's",
+    name: "dijkstra"
   }
 };
 

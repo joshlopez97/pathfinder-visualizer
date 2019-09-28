@@ -6,18 +6,20 @@ import Random from "../algorithms/random";
 import RandomGraph from "../algorithms/random_graph";
 import Node from "./node";
 import Dijkstras from "../algorithms/dijkstras";
+import AStar from "../algorithms/astar";
 
 class GraphButtons extends Component {
   constructor(props) {
     super(props);
-    this.state = {algorithm: this.props.algorithm};
   }
 
   get algorithm() {
-    console.log(this.state.algorithm);
-    switch (this.state.algorithm) {
+    console.log(this.props.algorithm);
+    switch (this.props.algorithm) {
       case "dijkstra":
         return new Dijkstras(this.random_graph.graph);
+      case "astar":
+        return new AStar(this.random_graph.graph);
       default:
         return null;
     }
