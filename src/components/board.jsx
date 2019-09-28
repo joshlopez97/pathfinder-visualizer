@@ -4,14 +4,27 @@ import {conf} from '../constants';
 import './board.css';
 
 class Board extends Component {
-  determineRows = () => {
-    const cellSize = window.innerWidth / conf.cellsPerRow;
-    return window.innerHeight / cellSize;
+  state = {numRows: Board.determineRows()};
+
+  setRows = () => {
+    this.setState({numRows: Board.determineRows()})
   };
 
+  static determineRows() {
+    const cellSize = window.innerWidth / conf.cellsPerRow;
+    return window.innerHeight / cellSize;
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.setRows);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setRows);
+  }
+  
   render() {
     const indices = [];
-    for (let i = 0; i < this.determineRows(); i++)
+    for (let i = 0; i < this.state.numRows; i++)
     {
       indices.push(i);
     }
