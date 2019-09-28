@@ -10,6 +10,7 @@ class Line extends Component {
     super(props);
     this.angle = props.properties.angle;
     this.width = props.properties.width;
+    this.label = Line.makeLabel(this.width);
     this.lineHolderStyle = {
       width: this.width,
       top: this.props.start.Y - conf.navHeight,
@@ -24,10 +25,15 @@ class Line extends Component {
     };
   }
 
+  static makeLabel(width) {
+    let cmValue = width  * 2.54 / 96;
+    return `${cmValue > 10 ? Math.round(cmValue) : cmValue.toFixed(1)} cm`;
+  }
+
   get animatedLine() {
     const growLine = () => keyframes`
         0% { width: 0 }
-        100% { width: ${this.width}px }
+        100% { width: 100% }
     `;
     return (styled.div`
         animation: ${growLine} ${this.props.properties.duration}s linear forwards;
@@ -45,7 +51,7 @@ class Line extends Component {
           <Node delay={this.props.delay + this.props.properties.duration} type={"right"}/>
           <AnimatedLine className="line"/>
           <div style={this.labelStyle} className="label-holder">
-            <Label text={Math.round(this.width)} delay={this.props.type === "solve" ? this.props.graphRenderTime : 0}/>
+            <Label text={this.label} delay={this.props.type === "solve" ? this.props.graphRenderTime : 0}/>
           </div>
         </div>
       </div>

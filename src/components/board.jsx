@@ -21,7 +21,7 @@ class Board extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.setRows);
   }
-  
+
   render() {
     const indices = [];
     for (let i = 0; i < this.state.numRows; i++)
