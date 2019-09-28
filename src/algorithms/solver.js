@@ -20,10 +20,6 @@ export default class GraphSolver extends GraphBuilder {
     return this._solution.graph;
   }
 
-  set random_graph(value) {
-    this._random_graph = value;
-  }
-
   applyHeuristic(heuristicFunction) {
     for (let node in this.random_graph.nodes) {
       node.heuristic = heuristicFunction(this.random_graph);
