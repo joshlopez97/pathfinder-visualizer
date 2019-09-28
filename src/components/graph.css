@@ -59,7 +59,7 @@ div.label-holder {
   position: absolute;
   width: 100%;
   height: unset !important;
-  z-index: 300;
+  z-index: 500;
 }
 .label {
   position: absolute;
@@ -80,6 +80,9 @@ div.label-holder {
   margin-top: 10px;
   opacity: 0;
   animation: fadein 0.5s linear forwards;
+}
+.label-value {
+  white-space: nowrap;
 }
 .caret-holder {
   position: absolute;

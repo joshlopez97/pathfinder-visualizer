@@ -17,6 +17,18 @@ export default class GraphBuilder {
     this._graph.end.name = this.getNodeName(end);
   }
 
+  get graph() {
+    return this._graph;
+  }
+
+  get start() {
+    return this._start;
+  }
+
+  get end() {
+    return this._end;
+  }
+
   saveNodes = function(startName, endName, startCoords, endCoords, distanceBetween) {
     if (!(startName in this._graph.nodes)) {
       this._graph.nodes[startName] = {
@@ -33,10 +45,6 @@ export default class GraphBuilder {
     this._graph.nodes[startName].neighbors[endName] = distanceBetween;
     this._graph.nodes[endName].neighbors[startName] = distanceBetween;
   };
-
-  get graph() {
-    return this._graph;
-  }
 
   makeLine(startCoords, endCoords, delay) {
     const startName = this.getNodeName(startCoords);
@@ -65,7 +73,6 @@ export default class GraphBuilder {
       this._line_map[`${startName}-${endName}`] = line;
       return line;
     }
-    console.log(`Line ${startName}-${endName} exists`);
     return this._line_map[`${startName}-${endName}`] || this._line_map[`${endName}-${startName}`];
   }
 
@@ -77,9 +84,5 @@ export default class GraphBuilder {
 
   lineExists(start, end) {
     return !!this._line_map[`${start}-${end}`] || !!this._line_map[`${end}-${start}`];
-  }
-
-  static fromPath(path) {
-
   }
 }

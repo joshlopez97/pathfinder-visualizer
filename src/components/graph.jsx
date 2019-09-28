@@ -10,18 +10,30 @@ import Dijkstras from "../algorithms/dijkstras";
 class GraphButtons extends Component {
   constructor(props) {
     super(props);
+    this.state = {algorithm: this.props.algorithm};
+  }
+
+  get algorithm() {
+    console.log(this.state.algorithm);
+    switch (this.state.algorithm) {
+      case "dijkstra":
+        return new Dijkstras(this.random_graph.graph);
+      default:
+        return null;
+    }
   }
 
   appendSolutionToDOM = () => {
     if (!!this.random_graph) {
-      this.pathfinder = new Dijkstras(this.random_graph.graph);
+      this.pathfinder = this.algorithm;
       const explorationHolder = Graph.explorationHolder,
         solutionHolder = Graph.solutionHolder;
       ReactDOM.unmountComponentAtNode(explorationHolder);
       ReactDOM.unmountComponentAtNode(solutionHolder);
-      console.log(this.pathfinder.solution);
-      ReactDOM.render(<Graph graph={this.pathfinder.graph}/>, explorationHolder);
-      ReactDOM.render(<Graph type={"solve"} graph={this.pathfinder.solution.graph}/>, solutionHolder);
+      ReactDOM.render(<Graph graph={this.pathfinder.exploration}/>, explorationHolder, () => {
+        this.setParentRenderState("exploring", this.pathfinder.exploration.duration);
+      });
+      ReactDOM.render(<Graph type={"solve"} graph={this.pathfinder.solution}/>, solutionHolder);
     }
   };
 
@@ -31,8 +43,17 @@ class GraphButtons extends Component {
     ReactDOM.unmountComponentAtNode(container);
     ReactDOM.unmountComponentAtNode(Graph.explorationHolder);
     ReactDOM.unmountComponentAtNode(Graph.solutionHolder);
-    ReactDOM.render(<Graph type={"random"} graph={this.random_graph.graph}/>, container);
+    ReactDOM.render(<Graph type={"random"} graph={this.random_graph.graph}/>, container, () => {
+      this.setParentRenderState("graphing", this.random_graph.graph.duration);
+    });
   };
+
+  setParentRenderState(state, seconds) {
+    this.props.setRenderState(state);
+    setTimeout(() => {
+      this.props.setRenderState("");
+    }, seconds * 1000);
+  }
 
   render() {
     return (

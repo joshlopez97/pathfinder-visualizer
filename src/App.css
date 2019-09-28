@@ -28,11 +28,12 @@ button:hover, div.button:hover {
   transform: rotate(180deg);
 }
 
+/* Navigation Bar */
 div.navigation {
   position: fixed;
   background: black;
   color: white;
-  width: 100%;
+  width: calc(100% - 50px);
   padding: 0 25px;
   height: 50px;
   z-index: 200;
@@ -52,6 +53,7 @@ div.controls {
   display: inline-block;
 }
 
+/* Algorithm Dropdown */
 div.algorithm-dropdown {
   padding: 30px;
   z-index: 100;
@@ -61,16 +63,51 @@ div.button.algorithm-chooser {
   padding-right: 0;
   margin: 0;
 }
-span.dropdown-caret {
+div.dropdown-caret-holder {
   float: right;
   margin: 0 10px;
+  width: 14px;
 }
-
+span.dropdown-caret {
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+span.dropdown-caret.flipped {
+  transform: translateY(-50%) rotate(180deg);
+}
 div.algorithm-options {
   position: absolute;
   background: #111111;
+  border: 1px solid white;
 }
 div.button.algorithm-option {
   margin: 0;
   width: 110px;
+  border: none;
+  border-bottom: 1px solid #aaa;
+}
+div.button.algorithm-option:last-child {
+  border: none;
+}
+
+/* Corner Icon */
+div.icon-holder {
+  float: right;
+}
+svg.icon {
+  height: 50px;
+  width: 50px;
+}
+svg.icon path {
+  stroke: white;
+  stroke-width: 2px;
+  fill: none;
+}
+svg.icon.exploring path {
+  stroke: #0374ff;
+}
+svg.icon.graphing path {
+  stroke: #bf0f92;
 }
