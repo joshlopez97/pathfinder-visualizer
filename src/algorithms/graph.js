@@ -51,7 +51,6 @@ export default class GraphBuilder {
     const endName = this.getNodeName(endCoords);
     if (!this.lineExists(startName, endName))
     {
-      console.log(`makeLine(${startName}, ${endName})`);
       const diffX = endCoords.X - startCoords.X,
         diffY = endCoords.Y - startCoords.Y;
       const angle = Math.atan2(diffY, diffX) * (180 / Math.PI);
@@ -84,5 +83,13 @@ export default class GraphBuilder {
 
   lineExists(start, end) {
     return !!this._line_map[`${start}-${end}`] || !!this._line_map[`${end}-${start}`];
+  }
+
+  clone() {
+    let copy = new GraphBuilder(this._start, this._end, this._speed);
+    copy._currentNode = this._currentNode;
+    copy._graph = JSON.parse(JSON.stringify(this._graph));
+    copy._line_map = Object.assign({}, this._line_map);
+    return copy;
   }
 }

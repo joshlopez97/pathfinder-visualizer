@@ -33,9 +33,9 @@ export default class Dijkstras extends GraphSolver {
         let delay = delay_map[currNode] || 0;
         let newLine = this.makeLine(this.random_graph.nodes[currNode].position, this.random_graph.nodes[neighbor].position, delay);
         delay_map[neighbor] = newLine.delay + newLine.properties.duration;
-        let alt = distances[currNode] + this.random_graph.nodes[currNode].neighbors[neighbor];
-        if (alt < distances[neighbor]) {
-          distances[neighbor] = alt;
+        let currentPath = distances[currNode] + this.random_graph.nodes[currNode].neighbors[neighbor];
+        if (currentPath < distances[neighbor]) {
+          distances[neighbor] = currentPath;
           paths[neighbor] = paths[currNode].concat([neighbor]);
           pq.push({name: neighbor, value: distances[neighbor]});
         }
@@ -43,13 +43,6 @@ export default class Dijkstras extends GraphSolver {
     }
     let shortest_path = paths[this.end.name];
 
-    let gb = new GraphBuilder(this.start, this.end, conf.draw_speed);
-    let delay = this.exploration.duration;
-    let prevLine = {}, currLine = gb.makeLine(this.start, this.random_graph.nodes[shortest_path[0]].position, delay);
-    for (let i = 1; i < shortest_path.length; i++) {
-      prevLine = Object.assign({}, currLine);
-      currLine = gb.makeLine(prevLine.end, this.random_graph.nodes[shortest_path[i]].position, prevLine.delay + prevLine.properties.duration);
-    }
-    return gb;
+    return this.makeSolutionAnimation(shortest_path);
   }
 }

@@ -20,10 +20,21 @@ export default class GraphSolver extends GraphBuilder {
     return this._solution.graph;
   }
 
+  makeSolutionAnimation(shortest_path) {
+    let gb = new GraphBuilder(this.start, this.end, conf.draw_speed);
+    let delay = this.exploration.duration;
+    let prevLine = {}, currLine = gb.makeLine(this.start, this.random_graph.nodes[shortest_path[0]].position, delay);
+    for (let i = 1; i < shortest_path.length; i++) {
+      prevLine = Object.assign({}, currLine);
+      currLine = gb.makeLine(prevLine.end, this.random_graph.nodes[shortest_path[i]].position, prevLine.delay + prevLine.properties.duration);
+    }
+    return gb;
+  }
+
   applyHeuristic(heuristicFunction) {
-    this.random_graph.nodes.forEach(node => {
-      node.heuristic = heuristicFunction(this.random_graph);
-      console.log(node.heuristic);
+    Object.keys(this.random_graph.nodes).map(nodeName => {
+      let node = this.random_graph.nodes[nodeName];
+      node.heuristic = heuristicFunction(node, this.random_graph);
     });
   }
 }

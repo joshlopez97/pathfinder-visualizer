@@ -12,7 +12,7 @@ const config = {
   },
   algorithms: {
     dijkstra: {
-      label: "Dijkstra's",
+      label: "Dijkstra",
       name: "dijkstra"
     },
     astar: {
@@ -21,7 +21,7 @@ const config = {
     }
   },
   startingAlgorithm: {
-    label: "Dijkstra's",
+    label: "Dijkstra",
     name: "dijkstra"
   }
 };

@@ -15,7 +15,7 @@ class Icon extends Component {
                                 type="rotate"
                                 from="180 24.750003814697266,24.46666717529297"
                                 to="540 24.750003814697266,24.46666717529297"
-                                dur="2s"
+                                dur="0.5s"
                                 repeatCount="indefinite"/> : ""}
 
           </path>
@@ -28,7 +28,7 @@ class Icon extends Component {
                                 type="rotate"
                                 from="180 24.52094841003418,25.00000381469727"
                                 to="-180 24.52094841003418,25.00000381469727"
-                                dur="2s"
+                                dur="0.5s"
                                 repeatCount="indefinite"/> : ""}
 
           </path>
@@ -41,7 +41,7 @@ class Icon extends Component {
                                 type="rotate"
                                 from="0 24.99999809265136,24.99999809265137"
                                 to="360 24.99999809265136,24.99999809265137"
-                                dur="2s"
+                                dur="0.5s"
                                 repeatCount="indefinite"/> : ""}
 
           </path>

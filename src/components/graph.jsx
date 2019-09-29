@@ -14,12 +14,12 @@ class GraphButtons extends Component {
   }
 
   get algorithm() {
-    console.log(this.props.algorithm);
+    console.log(this.random_graph.graph);
     switch (this.props.algorithm) {
       case "dijkstra":
-        return new Dijkstras(this.random_graph.graph);
+        return new Dijkstras(this.random_graph.clone().graph);
       case "astar":
-        return new AStar(this.random_graph.graph);
+        return new AStar(this.random_graph.clone().graph);
       default:
         return null;
     }

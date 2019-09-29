@@ -43,7 +43,6 @@ class Line extends Component {
 
   render() {
     const AnimatedLine = this.animatedLine;
-    console.log(this.props.type);
     return (
       <div className="line-container">
         <div style={this.lineHolderStyle} className="line-holder">
