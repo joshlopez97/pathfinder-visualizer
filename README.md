@@ -1,4 +1,7 @@
 # Pathfinding Algorithm Visualizer
+## Demo
+Check out the latest version of this application on [GitHub pages](https://joshlopez97.github.io/pathfinder-visualizer/).
+## Overview
 This visualizer is built in React and uses basic CSS animations to visualize pathfinding algorithms such as Dijkstra's algorithm. In this version, usage is incredibly simple. Click "New Graph" to generate a random undirected graph. Click "Solve" to use a pathfinding algorithm to visualize which nodes are explored and which path is discovered.
 ![image](https://raw.githubusercontent.com/joshlopez97/pathfinder-visualizer/master/public/screencapture.gif)
 ## Running in Development mode
