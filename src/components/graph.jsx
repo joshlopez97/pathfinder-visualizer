@@ -29,12 +29,15 @@ class GraphButtons extends Component {
     if (!!this.random_graph) {
       this.pathfinder = this.algorithm;
       const explorationHolder = Graph.explorationHolder,
-        solutionHolder = Graph.solutionHolder;
+        solutionHolder = Graph.solutionHolder,
+        solutionLabelsHolder = Graph.solutionLabelsHolder;
       ReactDOM.unmountComponentAtNode(explorationHolder);
       ReactDOM.unmountComponentAtNode(solutionHolder);
+      ReactDOM.unmountComponentAtNode(solutionLabelsHolder);
       ReactDOM.render(<Graph graph={this.pathfinder.exploration}/>, explorationHolder, () => {
         this.setParentRenderState("exploring", this.pathfinder.exploration.duration);
       });
+      ReactDOM.render(<Graph type={"solve-label"} graph={this.pathfinder.solution}/>, solutionLabelsHolder);
       ReactDOM.render(<Graph type={"solve"} graph={this.pathfinder.solution}/>, solutionHolder);
     }
   };
@@ -45,6 +48,7 @@ class GraphButtons extends Component {
     ReactDOM.unmountComponentAtNode(container);
     ReactDOM.unmountComponentAtNode(Graph.explorationHolder);
     ReactDOM.unmountComponentAtNode(Graph.solutionHolder);
+    ReactDOM.unmountComponentAtNode(Graph.solutionLabelsHolder);
     ReactDOM.render(<Graph type={"random"} graph={this.random_graph.graph}/>, container, () => {
       this.setParentRenderState("graphing", this.random_graph.graph.duration);
     });
@@ -84,6 +88,10 @@ class Graph extends Component {
 
   static get solutionHolder() {
     return document.getElementById('solution-holder');
+  }
+
+  static get solutionLabelsHolder() {
+    return document.getElementById('solution-labels-holder');
   }
 
   get startEndNodeLabels() {

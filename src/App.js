@@ -32,9 +32,11 @@ export default class App extends Component {
           </div>
           <Icon renderState={this.state.renderState}/>
         </div>
+        <div id="labels"/>
         <div className="graph-holder" id="graph-holder"/>
         <div className="graph-holder" id="exploration-holder"/>
         <div className="graph-holder" id="solution-holder"/>
+        <div className="graph-holder" id="solution-labels-holder"/>
         <Board/>
       </div>
     );

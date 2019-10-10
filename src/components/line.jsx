@@ -45,13 +45,13 @@ class Line extends Component {
     const AnimatedLine = this.animatedLine;
     return (
       <div className="line-container">
-        <div style={this.lineHolderStyle} className="line-holder">
+        <div style={this.lineHolderStyle} className={"line-holder" + (this.props.type === 'solve-label' ? ' label-only' : '')}>
+          <div style={this.labelStyle} className="label-holder">
+            <Label text={this.label} delay={this.props.type === 'solve' || this.props.type === 'solve-label' ? this.props.graphRenderTime : 0}/>
+          </div>
           <Node delay={this.props.delay}/>
           <Node delay={this.props.delay + this.props.properties.duration} type={"right"}/>
           <AnimatedLine className="line"/>
-          <div style={this.labelStyle} className="label-holder">
-            <Label text={this.label} delay={this.props.type === "solve" ? this.props.graphRenderTime : 0}/>
-          </div>
         </div>
       </div>
     );

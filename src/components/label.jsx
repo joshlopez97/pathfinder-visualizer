@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {keyframes} from "styled-components";
 import styled from "styled-components";
+import ReactDOM from "react-dom";
 
 class Label extends Component {
   get animatedLabel() {
@@ -12,6 +13,15 @@ class Label extends Component {
         animation-delay: ${this.props.delay}s;
     `) : styled.div``;
   }
+  // componentDidMount() {
+  //   const currentLabel = ReactDOM.findDOMNode(this);
+  //   const position = currentLabel.getBoundingClientRect();
+  //   let newStyle = Object.assign({}, this.props.style);
+  //   newStyle.position = "absolute";
+  //   newStyle.top = position.top;
+  //   newStyle.left = position.left;
+  //   ReactDOM.render(<Label class={this.props.class} style={newStyle} text={this.props.text}/>, document.getElementById("labels"));
+  // }
 
   render() {
     const AnimatedLabel = this.animatedLabel;

@@ -35,6 +35,9 @@
   box-shadow: 0 0 5px #3cff75;
   height: 3px;
 }
+#solution-labels-holder .line-holder > div.line {
+  display: none;
+}
 #graph-holder .node {
   display: none;
 }
