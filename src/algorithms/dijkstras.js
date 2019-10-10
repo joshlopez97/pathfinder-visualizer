@@ -1,6 +1,4 @@
-import GraphBuilder from "./graph";
 import TinyQueue from 'tinyqueue';
-import {conf} from '../constants';
 import GraphSolver from "./solver";
 
 export default class Dijkstras extends GraphSolver {
