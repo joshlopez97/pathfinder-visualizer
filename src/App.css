@@ -111,3 +111,16 @@ svg.icon.exploring path {
 svg.icon.graphing path {
   stroke: #ff00f2;
 }
+
+@media only screen and (max-width: 600px) {
+  div.controls {
+    display: none;
+  }
+  button {
+    margin: 0 15px;
+  }
+  div.navigation {
+    padding: 0 15px;
+    width: calc(100% - 30px);
+  }
+}
