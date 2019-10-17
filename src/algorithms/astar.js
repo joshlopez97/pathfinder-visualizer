@@ -43,7 +43,6 @@ export default class AStar extends GraphSolver {
 
     this.addToOpenList({f: 0, g: 0, ...this.start});
 
-    let delay_map = {};
     let paths = {};
     Object.keys(this.random_graph.nodes).forEach(node => {
       paths[node] = [];
@@ -66,15 +65,12 @@ export default class AStar extends GraphSolver {
       this._closedSet.add(currNode.name);
       this.removeFromOpenList(currNode.name);
       for (let neighborName of Object.keys(this.random_graph.nodes[currNode.name].neighbors)) {
-        let delay = delay_map[currNode.name] || 0;
-        let newLine = this.makeLine(this.random_graph.nodes[currNode.name].position, this.random_graph.nodes[neighborName].position, delay);
-        delay_map[neighborName] = newLine.delay + newLine.properties.duration;
         let neighborData = this.random_graph.nodes[neighborName];
         neighborData.name = neighborName;
         neighborData.g = this._gscore[currNode.name] + this.random_graph.nodes[currNode.name].neighbors[neighborName];
         neighborData.f = neighborData.g + neighborData.heuristic;
-
         if (!this._closedSet.has(neighborName)) {
+          this.exploredLine(currNode.name, neighborName);
           if (neighborData.g < this._gscore[neighborName]) {
             this._gscore[neighborName] = neighborData.g;
             this._fscore[neighborName] = neighborData.f;

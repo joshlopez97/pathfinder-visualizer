@@ -7,6 +7,7 @@ import RandomGraph from "../algorithms/random_graph";
 import Node from "./node";
 import Dijkstras from "../algorithms/dijkstras";
 import AStar from "../algorithms/astar";
+import BreadthFirst from "../algorithms/breadth_first";
 
 class GraphButtons extends Component {
   constructor(props) {
@@ -20,6 +21,8 @@ class GraphButtons extends Component {
         return new Dijkstras(this.random_graph.clone().graph);
       case "astar":
         return new AStar(this.random_graph.clone().graph);
+      case "breadth":
+        return new BreadthFirst(this.random_graph.clone().graph);
       default:
         return null;
     }

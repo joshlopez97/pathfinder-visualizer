@@ -6,6 +6,7 @@ export default class GraphSolver extends GraphBuilder {
     super(random_graph.start, random_graph.end, conf.solve_speed);
     this._graph.lines = [];
     this._random_graph = random_graph;
+    this._delay_map = {};
   }
 
   get random_graph() {
@@ -18,6 +19,12 @@ export default class GraphSolver extends GraphBuilder {
 
   get solution() {
     return this._solution.graph;
+  }
+
+  exploredLine(currNodeName, neighborName) {
+    let delay = this._delay_map[currNodeName] || 0;
+    let newLine = this.makeLine(this.random_graph.nodes[currNodeName].position, this.random_graph.nodes[neighborName].position, delay);
+    this._delay_map[neighborName] = newLine.delay + newLine.properties.duration;
   }
 
   makeSolutionAnimation(shortest_path) {

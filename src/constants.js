@@ -18,6 +18,10 @@ const config = {
     astar: {
       label: "A* Search",
       name: "astar"
+    },
+    breadth: {
+      label: "Breadth-First Search",
+      name: "breadth"
     }
   },
   startingAlgorithm: {

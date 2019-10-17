@@ -1,7 +1,7 @@
 import TinyQueue from 'tinyqueue';
 import GraphSolver from "./solver";
 
-export default class Dijkstras extends GraphSolver {
+export default class DepthFirst extends GraphSolver {
   constructor(random_graph) {
     super(random_graph);
     this._solution = this.solve();
@@ -24,12 +24,15 @@ export default class Dijkstras extends GraphSolver {
         paths[node] = [];
       }
     });
+    let delay_map = {};
     while (pq.length > 0) {
       let currNode = pq.pop().name;
       Object.keys(this.random_graph.nodes[currNode].neighbors).forEach(neighbor => {
+        let delay = delay_map[currNode] || 0;
+        let newLine = this.makeLine(this.random_graph.nodes[currNode].position, this.random_graph.nodes[neighbor].position, delay);
+        delay_map[neighbor] = newLine.delay + newLine.properties.duration;
         let currentPath = distances[currNode] + this.random_graph.nodes[currNode].neighbors[neighbor];
         if (currentPath < distances[neighbor]) {
-          this.exploredLine(currNode, neighbor);
           distances[neighbor] = currentPath;
           paths[neighbor] = paths[currNode].concat([neighbor]);
           pq.push({name: neighbor, value: distances[neighbor]});
