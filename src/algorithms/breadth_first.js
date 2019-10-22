@@ -14,11 +14,12 @@ export default class BreadthFirst extends GraphSolver {
     paths[startNode] = [];
 
     queue.push(startNode);
+    const seen = new Set([]);
     while (queue.length > 0) {
       const N = queue.length;
       for (let i = 0; i < N; i++) {
         let currNode = queue.shift();
-        console.log(currNode);
+        seen.add(currNode);
         if (currNode === this.random_graph.end.name) {
           return this.makeSolutionAnimation(paths[this.end.name]);
         }
@@ -26,7 +27,9 @@ export default class BreadthFirst extends GraphSolver {
         Object.keys(neighbors).forEach(neighbor => {
           this.exploredLine(currNode, neighbor);
           paths[neighbor] = paths[currNode].concat([neighbor]);
-          queue.push(neighbor);
+          if (!seen.has(neighbor)) {
+            queue.push(neighbor);
+          }
         });
       }
     }
